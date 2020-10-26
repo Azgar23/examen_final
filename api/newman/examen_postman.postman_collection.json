@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "3f372617-e243-4464-8b81-c61302a51eb0",
+		"name": "examen_postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NonApiRequest",
+			"item": [
+				{
+					"name": "Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4815a699-7b47-413e-9c60-8c68b43cc840",
+								"exec": [
+									"pm.test(\"Status should be ready\", function() {\r",
+									"var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql(\"Listos para el examen\");\r",
+									"});\r",
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{examen}}/v1/examen/status",
+							"host": [
+								"{{examen}}"
+							],
+							"path": [
+								"v1",
+								"examen",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "updateName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "abb0e049-e579-4d08-9844-08ad3c3f7d60",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "0cbed213-ffb7-4b57-b99a-948b514311df",
+								"exec": [
+									"pm.test(\"Status code should be 406\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(406);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Warning message should be displayed\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Name was not provided\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{examen}}/v1/examen/updateName",
+							"host": [
+								"{{examen}}"
+							],
+							"path": [
+								"v1",
+								"examen",
+								"updateName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRandomNameFailed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b205617a-772a-454b-99c6-99ea9ed7e20c",
+								"exec": [
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"var responseJson = pm.response.json();\r",
+									"pm.variables.set(\"randomNameV\",responseJson.name);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "testpass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "testuser",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{examen}}/v1/examen/randomName",
+							"host": [
+								"{{examen}}"
+							],
+							"path": [
+								"v1",
+								"examen",
+								"randomName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRandomName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7df0e4f7-a092-4be0-b0b8-63a7968d5493",
+								"exec": [
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"\r",
+									"var responseJson = pm.response.json();\r",
+									"pm.variables.set(\"randomNameV\",responseJson.name);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "testpass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "testuser",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{examen}}/v1/examen/randomName",
+							"host": [
+								"{{examen}}"
+							],
+							"path": [
+								"v1",
+								"examen",
+								"randomName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "returnSameName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ffce4b06-70c9-423e-b810-0fb611d830e1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "099df3d6-59cf-42a1-8fe6-10a2a5886b78",
+								"exec": [
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.eql(200);\r",
+									"});\r",
+									"pm.test(\"Name should be same name\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(pm.variables.get('\"randomNameV\"'));\r",
+									"});\r",
+									"console.log(pm.variables.get(\"randomNameV\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "testpass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "testuser",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n\"name\":\"{{randomNameV}}\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{examen}}/v1/examen/sameName",
+							"host": [
+								"{{examen}}"
+							],
+							"path": [
+								"v1",
+								"examen",
+								"sameName"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
