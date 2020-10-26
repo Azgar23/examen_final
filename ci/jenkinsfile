@@ -7,7 +7,8 @@ pipeline {
                     sh '''
                     cd api/newman
                     newman run examen_postman.postman_collection.json -e examen_environment.postman_environment.json               
-                    cd../../
+                    cd ..
+                    cd ..
                     '''
                 }
             }
@@ -18,7 +19,8 @@ pipeline {
                     sh '''
                         cd api/restassured
                         mvn clean test
-                        cd../../
+                        cd ..
+                        cd ..
                         '''
                 }
             }              
